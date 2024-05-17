@@ -147,7 +147,11 @@
   "developer": "F-Style",
   "image": "https://code.s3.yandex.net/teens/pindie-games/dangeons-n-caves-prologue/cover.png",
   "link": "https://code.s3.yandex.net/teens/pindie-games/dangeons-n-caves-prologue/game/index.html",
-  "users": [],
+  "users": [
+    {
+      "$oid": "6606b19ef99cd7a67132aaf6"
+    }
+  ],
   "categories": [
     {
       "$oid": "65fd4ae88dfd769ce3133282"
