@@ -1,5 +1,5 @@
 const allowedCors = [
-  "fronpe.nomoredomainswork.ru"
+  "https://fronpe.nomoredomainswork.ru"
 ];
 
 function cors(req, res, next) {
