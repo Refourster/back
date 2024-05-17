@@ -1,4 +1,7 @@
-const allowedCors = ["https://fronpe.nomoredomainswork.ru"];
+const allowedCors = [
+  "https://fronpe.nomoredomainswork.ru",
+  "http://localhost:3000"
+];
 
 function cors(req, res, next) {
   const { origin } = req.headers;
