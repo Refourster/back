@@ -26,9 +26,8 @@ usersRouter.get("/users", findAllUsers, sendAllUsers);
 usersRouter.post(
   "/users",
   findAllUsers,
-  checkIsUserExists,
   checkEmptyNameAndEmailAndPassword,
-  checkAuth,
+  checkIsUserExists,
   hashPassword,
   createUser,
   sendUserCreated
@@ -36,14 +35,6 @@ usersRouter.post(
 
 usersRouter.get("/users/:id", findUserById, sendUserById);
 usersRouter.get("/me", checkAuth, sendMe);
-usersRouter.put(
-  "/users/:id",
-  checkEmptyNameAndEmail,
-  checkAuth,
-  updateUser,
-  sendUserUpdated
-);
-
 usersRouter.put(
   "/users/:id",
   checkEmptyNameAndEmail,

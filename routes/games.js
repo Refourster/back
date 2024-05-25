@@ -27,6 +27,7 @@ gamesRouter.post(
   "/games",
   checkEmptyFields,
   checkIfCategoriesAvaliable,
+  findAllGames,
   checkIsGameExists,
   checkAuth,
   createGame,
@@ -49,6 +50,7 @@ gamesRouter.put(
 gamesRouter.delete(
   "/games/:id", 
   checkAuth, 
+  findAllGames,
   checkIsGameExists,
   deleteGame, 
   sendGameDeleted
