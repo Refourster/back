@@ -25,33 +25,33 @@ const {
 gamesRouter.get("/games", findAllGames, sendAllGames);
 gamesRouter.post(
   "/games",
-  findAllGames,
-  createGame,
-  sendGameCreated,
   checkEmptyFields,
   checkIfCategoriesAvaliable,
   checkIsGameExists,
   checkAuth,
+  createGame,
+  sendGameCreated,
 );
 
 gamesRouter.get("/games/:id", findGameById, sendGameById);
 gamesRouter.put(
   "/games/:id",
-  findGameById,
-  checkIsVoteRequest,
-  updateGame,
-  sendGameUpdated,
+  checkAuth,
+  checkEmptyFields,
   checkIfUsersAreSafe,
   checkIfCategoriesAvaliable,
-  checkEmptyFields,
-  checkAuth,
+  checkIsVoteRequest,
+  findGameById,
+  updateGame,
+  sendGameUpdated,
 );
 
 gamesRouter.delete(
   "/games/:id", 
   checkAuth, 
+  checkIsGameExists,
   deleteGame, 
   sendGameDeleted
-); 
+);
 
 module.exports = gamesRouter;
