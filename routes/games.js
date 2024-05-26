@@ -25,10 +25,10 @@ const {
 gamesRouter.get("/games", findAllGames, sendAllGames);
 gamesRouter.post(
   "/games",
-  checkEmptyFields,
-  checkIfCategoriesAvaliable,
   findAllGames,
   checkIsGameExists,
+  checkIfCategoriesAvaliable,
+  checkEmptyFields,
   checkAuth,
   createGame,
   sendGameCreated,

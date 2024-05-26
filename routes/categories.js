@@ -22,9 +22,9 @@ const {
 categoriesRouter.get("/categories", findAllCategories, sendAllCategories);
 categoriesRouter.post(
   "/categories",
-  checkEmptyName,
   findAllCategories,
   checkIsCategoryExists,
+  checkEmptyName,
   checkAuth,
   createCategory,
   sendCategoryCreated
