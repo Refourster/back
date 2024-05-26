@@ -41,7 +41,7 @@ const createGame = async (req, res, next) => {
 
 const updateGame = async (req, res, next) => {
   try {
-    req.game = await games.findByIdAndUpdate(req.params.id, req.body);
+    req.game = await games.findByIdAndUpdate(req.params.id, req.body, { new: true }).populate("categories").populate("users");
     next();
   } catch (error) {
     res.setHeader("Content-Type", "application/json");
@@ -59,14 +59,12 @@ const deleteGame = async (req, res, next) => {
   }
 };
 
-const checkEmptyFields = async (req, res, next) => {
-  if (
-    !req.body.title ||
-    !req.body.description ||
-    !req.body.image ||
-    !req.body.link ||
-    !req.body.developer
-  ) {
+const checkEmptyFields = (req, res, next) => {
+  if (req.isVoteRequest) {
+    return next();
+  }
+
+  if (!req.body.title || !req.body.description || !req.body.image || !req.body.link || !req.body.developer) {
     res.setHeader("Content-Type", "application/json");
     res.status(400).send(JSON.stringify({ message: "Заполни все поля" }));
   } else {
@@ -74,12 +72,14 @@ const checkEmptyFields = async (req, res, next) => {
   }
 };
 
-const checkIfCategoriesAvaliable = async (req, res, next) => {
+const checkIfCategoriesAvaliable = (req, res, next) => {
+  if (req.isVoteRequest) {
+    return next();
+  }
+
   if (!req.body.categories || req.body.categories.length === 0) {
     res.setHeader("Content-Type", "application/json");
-    res
-      .status(400)
-      .send(JSON.stringify({ message: "Выбери хотя бы одну категорию" }));
+    res.status(400).send(JSON.stringify({ message: "Выбери хотя бы одну категорию" }));
   } else {
     next();
   }
@@ -116,11 +116,12 @@ const checkIsGameExists = async (req, res, next) => {
   }
 };
 
-const checkIsVoteRequest = async (req, res, next) => {
+const checkIsVoteRequest = (req, res, next) => {
   if (Object.keys(req.body).length === 1 && req.body.users) {
     req.isVoteRequest = true;
+  } else {
+    req.isVoteRequest = false;
   }
-  
   next();
 };
 
