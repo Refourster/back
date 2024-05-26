@@ -80,11 +80,6 @@ const checkEmptyFields = async (req, res, next) => {
 };
 
 const checkIfCategoriesAvaliable = async (req, res, next) => {
-  if (req.isVoteRequest) {
-    next();
-    return;
-  }
-  
   if (!req.body.categories || req.body.categories.length === 0) {
     res.setHeader("Content-Type", "application/json");
     res
@@ -96,11 +91,6 @@ const checkIfCategoriesAvaliable = async (req, res, next) => {
 };
 
 const checkIfUsersAreSafe = async (req, res, next) => {
-  if (!req.body.users) {
-    next();
-    return;
-  }
-  
   if (req.body.users.length - 1 === req.game.users.length) {
     next();
     return;
