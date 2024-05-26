@@ -9,6 +9,7 @@ const sendUserById = (req, res) => {
 };
 
 const sendMe = (req, res) => {
+  console.log("User from token:", req.user);
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(req.user));
 };
