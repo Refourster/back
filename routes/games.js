@@ -37,12 +37,12 @@ gamesRouter.post(
 gamesRouter.get("/games/:id", findGameById, sendGameById);
 gamesRouter.put(
   "/games/:id",
+  checkAuth,
   findGameById,
   checkIsVoteRequest,
   checkIfUsersAreSafe,
   checkIfCategoriesAvaliable,
   checkEmptyFields,
-  checkAuth,
   updateGame,
   sendGameUpdated,
 );
