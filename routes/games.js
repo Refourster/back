@@ -38,13 +38,13 @@ gamesRouter.get("/games/:id", findGameById, sendGameById);
 gamesRouter.put(
   "/games/:id",
   findGameById,
-  checkAuth,
   checkIsVoteRequest,
-  updateGame,
-  sendGameUpdated,
   checkIfUsersAreSafe,
   checkIfCategoriesAvaliable,
   checkEmptyFields,
+  checkAuth,
+  updateGame,
+  sendGameUpdated,
 );
 
 gamesRouter.delete(
